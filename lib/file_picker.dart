@@ -13,7 +13,7 @@ enum FileType {
   custom,
 }
 
-class FilePicker {
+abstract class FilePicker {
   FilePicker._();
   static const MethodChannel _channel =
       const MethodChannel('miguelruivo.flutter.plugins.filepicker');
