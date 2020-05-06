@@ -12,7 +12,10 @@ import androidx.annotation.VisibleForTesting;
 import androidx.core.app.ActivityCompat;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry;
@@ -160,7 +163,13 @@ public class FilePickerDelegate implements PluginRegistry.ActivityResultListener
             return;
         }
 
-        intent = new Intent(Intent.ACTION_GET_CONTENT);
+        List<String> extensions = Arrays.asList(allowedExtensions);
+        if (extensions.toString().contains("pdf")) {
+            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        } else {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+        }
+
         final Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + File.separator);
         Log.d(TAG, "Selected type " + type);
         intent.setDataAndType(uri, this.type);
