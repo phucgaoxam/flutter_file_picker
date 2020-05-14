@@ -166,7 +166,6 @@ public class FilePickerDelegate implements PluginRegistry.ActivityResultListener
         List<String> extensions = Arrays.asList(allowedExtensions);
         if (extensions.toString().contains("pdf")) {
             intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         } else {
             intent = new Intent(Intent.ACTION_GET_CONTENT);
         }
